@@ -9,8 +9,8 @@ urlpatterns = [
     path("about/", views.about, name='about'),
     path("admin/", admin.site.urls, name='admin'),
     path("news/", include("news.urls")), 
-    path('login/', views.login, name='login'),
-    path("regestration/", views.regestration, name='regestration'),
+    path("login/", views.login, name="login"),
+    path("registration/", views.registration, name="registration"),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ]

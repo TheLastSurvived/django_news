@@ -17,23 +17,24 @@
         <div class="auth-form">
             <form method="post">
                 {% csrf_token %}
-                
-                <!-- Поле для username/email -->
+
+
                 <div class="mb-3">
-                    <label for="id_username" class="form-label">Email адрес</label>
+                    <label for="id_email" class="form-label">Email адрес</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                        <input type="text" 
+                        <input type="email" 
                                class="form-control" 
-                               id="id_username" 
-                               name="username" 
+                               id="id_email" 
+                               name="username"
                                placeholder="Введите ваш email" 
                                required>
                     </div>
-                    {% if form.username.errors %}
-                        <div class="text-danger mt-1">{{ form.username.errors }}</div>
+                    {% if form.email.errors %}
+                        <div class="text-danger mt-1">{{ form.email.errors }}</div>
                     {% endif %}
                 </div>
+
                 
                 <!-- Поле для пароля -->
                 <div class="mb-3">
@@ -72,7 +73,7 @@
     </div>
     
     <div class="auth-switch">
-        Нет аккаунта? <a href="{% url 'regestration' %}">Зарегистрируйтесь</a>
+        Нет аккаунта? <a href="{% url 'registration' %}">Зарегистрируйтесь</a>
     </div>
 </div>
 <script>

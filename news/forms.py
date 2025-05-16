@@ -1,15 +1,17 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
+
+User = get_user_model()
 
 class CustomAuthForm(AuthenticationForm):
-    username = forms.CharField(
+    username = forms.EmailField(
         label="Email",
-        widget=forms.TextInput(attrs={
+        widget=forms.EmailInput(attrs={
             'class': 'form-control',
             'placeholder': 'Введите ваш email',
-            'id': 'id_username'
+            'id': 'id_email'
         })
     )
     password = forms.CharField(
@@ -20,6 +22,23 @@ class CustomAuthForm(AuthenticationForm):
             'id': 'id_password'
         })
     )
+
+    def clean(self):
+        email = self.cleaned_data.get('email')
+        password = self.cleaned_data.get('password')
+
+        if email is not None and password:
+            try:
+                user = User.objects.get(email=email)
+            except User.DoesNotExist:
+                raise ValidationError('Неверный email или пароль')
+            
+            if not user.check_password(password):
+                raise ValidationError('Неверный email или пароль')
+            
+            self.user_cache = user
+            
+        return self.cleaned_data
 
 class CustomUserCreationForm(UserCreationForm):
     first_name = forms.CharField(
@@ -40,3 +59,10 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email', 'password1', 'password2')
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.username = self.cleaned_data['email']  # Используем email как username
+        if commit:
+            user.save()
+        return user
