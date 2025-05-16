@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+
+{% block title %}
+Страница новости
+{% endblock title %}
+
+
+{% block content %}
+{% load static %}
+
+ <!-- Хлебные крошки -->
+    <div class="container mt-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="bi bi-house-door"></i> Главная</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'news' %}"><i class="bi bi-people"></i> Новости</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Новый закон о цифровой экономике</li>
+            </ol>
+        </nav>
+    </div>
+
+    <!-- Шапка новости -->
+    <div class="news-header text-center">
+        <div class="container">
+            <div class="badge bg-primary mb-3"><i class="bi bi-graph-up"></i> Экономика</div>
+            <h1 class="display-4 fw-bold">Парламент принял новый закон о цифровой экономике</h1>
+            <p class="lead">Законопроект направлен на развитие цифровых технологий и создание благоприятных условий для IT-бизнеса</p>
+        </div>
+    </div>
+
+    <!-- Основное содержание -->
+    <div class="container">
+        <div class="row">
+            <!-- Основной контент -->
+            <div class="col-lg-8 mb-5">
+                <div class="news-meta">
+                    <span><i class="bi bi-clock"></i> Опубликовано 12 мая 2023 в 14:30</span>
+                    <span class="mx-2">|</span>
+                    <span><i class="bi bi-eye"></i> 12 543 просмотра</span>
+                    <span class="mx-2">|</span>
+                    <span><i class="bi bi-chat-left-text"></i> 24 комментария</span>
+                </div>
+
+                <div class="news-content">
+                    <p class="lead">Сегодня парламент страны принял долгожданный закон "О цифровой экономике", который должен создать правовые условия для развития цифровых технологий и привлечь инвестиции в IT-сектор.</p>
+
+                    <p>Законопроект, разработанный министерством цифрового развития, был принят большинством голосов после нескольких месяцев обсуждений и доработок. Документ содержит ряд важных положений, которые могут существенно повлиять на развитие экономики страны.</p>
+
+
+                    <h2>Основные положения закона</h2>
+                    <p>Среди ключевых аспектов нового законодательства:</p>
+                    <ul>
+                        <li>Создание специального налогового режима для IT-компаний</li>
+                        <li>Упрощение процедур для стартапов в сфере цифровых технологий</li>
+                        <li>Развитие цифровой инфраструктуры в регионах</li>
+                        <li>Поддержка образовательных программ в области IT</li>
+                        <li>Регулирование криптовалют и блокчейн-технологий</li>
+                    </ul>
+
+                    <p>Эксперты отмечают, что принятие этого закона может сделать страну более привлекательной для международных IT-компаний и стимулировать рост собственного технологического сектора.</p>
+
+                    <blockquote class="blockquote bg-light p-4 border-start border-4 border-primary">
+                        <p>"Этот закон - важный шаг на пути к цифровой трансформации нашей экономики. Он создает необходимые правовые условия для развития инновационных технологий и привлечения инвестиций в этот сектор."</p>
+                        <footer class="blockquote-footer">Министр цифрового развития <cite>Иван Петров</cite></footer>
+                    </blockquote>
+
+                    <h2>Реакция бизнеса</h2>
+                    <p>Представители IT-индустрии в целом положительно оценили принятие закона, хотя некоторые выразили опасения по поводу отдельных положений, касающихся регулирования криптовалют.</p>
+
+
+                    <p>"Мы давно ждали этого закона. Особенно важны для нас налоговые льготы, которые позволят reinvest больше средств в развитие и исследования", - заявил генеральный директор одной из крупнейших IT-компаний страны.</p>
+
+                    <p>Ожидается, что закон вступит в силу с 1 января следующего года, хотя некоторые положения могут быть реализованы уже в текущем году.</p>
+                </div>
+
+                <!-- Теги -->
+                <div class="news-tags">
+                    <h5><i class="bi bi-tags"></i> Теги:</h5>
+                    <a href="#" class="btn btn-outline-secondary tag">экономика</a>
+                    <a href="#" class="btn btn-outline-secondary tag">цифровизация</a>
+                    <a href="#" class="btn btn-outline-secondary tag">законодательство</a>
+                    <a href="#" class="btn btn-outline-secondary tag">IT</a>
+                    <a href="#" class="btn btn-outline-secondary tag">налоги</a>
+                </div>
+
+                <!-- Комментарии -->
+                <div class="mb-5">
+                    <h3><i class="bi bi-chat-left-text"></i> Комментарии (24)</h3>
+                    <div class="mb-4">
+                        <div class="d-flex mb-3">
+                            <div class="flex-grow-1">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Алексей Иванов</h5>
+                                        <small class="text-muted">15 мая 2023 в 10:30</small>
+                                        <p class="card-text mt-2">Наконец-то! Ждали этот закон уже несколько лет. Особенно радуют налоговые послабления для IT-компаний.</p>
+                                        <a href="#" class="btn btn-sm btn-outline-secondary">Ответить</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex mb-3">
+                        <div class="flex-grow-1">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Дмитрий Соколов</h5>
+                                    <small class="text-muted">14 мая 2023 в 18:20</small>
+                                    <p class="card-text mt-2">А что с регулированием криптовалют? В статье мало информации по этому поводу.</p>
+                                    <a href="#" class="btn btn-sm btn-outline-secondary">Ответить</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="mt-4">
+                        <h4 class="mb-3">Оставить комментарий</h4>
+                        <div class="mb-3">
+                            <label for="commentText" class="form-label">Ваш комментарий</label>
+                            <textarea class="form-control" id="commentText" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Отправить</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Боковая панель -->
+            <div class="col-lg-4">
+
+                <!-- Популярные новости -->
+                <div class="card mb-4">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0"><i class="bi bi-fire"></i> Популярные новости</h5>
+                    </div>
+                    <div class="list-group list-group-flush">
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">ЦБ повысил ключевую ставку</h6>
+                                <small><i class="bi bi-eye"></i> 8 542</small>
+                            </div>
+                            <small class="text-muted"><i class="bi bi-clock"></i> 2 дня назад</small>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">Новый смартфон от Apple</h6>
+                                <small><i class="bi bi-eye"></i> 7 321</small>
+                            </div>
+                            <small class="text-muted"><i class="bi bi-clock"></i> 3 дня назад</small>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">Изменения в трудовом кодексе</h6>
+                                <small><i class="bi bi-eye"></i> 6 987</small>
+                            </div>
+                            <small class="text-muted"><i class="bi bi-clock"></i> 5 дней назад</small>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">Футбольный клуб сменил тренера</h6>
+                                <small><i class="bi bi-eye"></i> 5 432</small>
+                            </div>
+                            <small class="text-muted"><i class="bi bi-clock"></i> 1 неделя назад</small>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Похожие новости -->
+                <div class="card mb-4">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0"><i class="bi bi-collection"></i> Похожие новости</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="related-news-item">
+                            <h6><a href="#">Правительство утвердило стратегию цифровой трансформации</a></h6>
+                            <small class="text-muted"><i class="bi bi-clock"></i> 1 неделя назад</small>
+                        </div>
+                        <hr>
+                        <div class="related-news-item">
+                            <h6><a href="#">IT-компании получат налоговые льготы</a></h6>
+                            <small class="text-muted"><i class="bi bi-clock"></i> 2 недели назад</small>
+                        </div>
+                        <hr>
+                        <div class="related-news-item">
+                            <h6><a href="#">В стране создадут 10 новых IT-парков</a></h6>
+                            <small class="text-muted"><i class="bi bi-clock"></i> 3 недели назад</small>
+                        </div>
+                    </div>
+                </div>
+
+      
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
