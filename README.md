@@ -17,8 +17,7 @@ python manage.py runserver
 ```
 Далее перейти по локальному адресу. В Django это обычно http://localhost:8000 или http://127.0.0.1:8000. 
 
-Так же сделано API
-Эндпоинты:
+Так же сделано API:
 
 GET /api/categories/ - список категорий
 
