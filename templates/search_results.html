@@ -1,0 +1,33 @@
+ {% extends "base.html" %}
+
+{% block title %}
+Войти
+{% endblock title %}
+
+
+{% block content %}
+{% load static %}
+<div class="container my-5">
+{% if results %}
+
+  <h2>Результаты поиска для "{{ query }}":</h2>
+  <div class="row">
+
+  
+  {% for news in results %}
+
+    <div class="col-lg-6">
+        <div class="card shadow-sm"> <img src="{{news.image.url }}" alt="{{ news.title }}"> <div class="card-body"> <p class="card-text">{{ news.title }}</p> <div class="d-flex justify-content-between align-items-center"> <div class="btn-group"> <a class="btn btn-sm btn-outline-secondary" href="/news/{{news.id}}">Просмотреть</a> </div> </div> </div> </div>    
+    </div>
+    {% endfor %}
+    </div>
+{% else %}
+<div class="text-center">
+    <p>Ничего не найдено.</p>
+    <a href="{% url 'home' %}">Вернуться на главную</a>
+</div>
+{% endif %}
+</div>
+  
+
+{% endblock content %}

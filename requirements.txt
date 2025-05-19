@@ -1,2 +1,5 @@
 Django
 django-ckeditor
+pillow
+djangorestframework
+django-filter

@@ -11,10 +11,10 @@
     <div class="jumbotron text-center">
         <h1 class="display-4"><i class="bi bi-newspaper"></i> Последние новости</h1>
         <p class="lead">Будьте в курсе самых важных событий</p>
-        <form class="form-inline d-flex justify-content-center  mt-4">
+        <form class="form-inline d-flex justify-content-center  mt-4" action="{% url 'search_news' %}" method="GET">
             <div class="input-group mb-3" style="max-width: 500px;">
                 <span class="input-group-text"><i class="bi bi-search"></i></span>
-                <input type="text" class="form-control" placeholder="Поиск новостей...">
+                <input type="text" class="form-control" name="q" placeholder="Поиск новостей...">
                 <button class="btn btn-primary" type="submit">Найти</button>
             </div>
         </form>
@@ -26,17 +26,17 @@
             <!-- Главная новость -->
             <div class="col-md-8 mb-4">
                 <div class="card">
-                    <img src="{% static 'images/news.jpg' %}" class="card-img-top" alt="Главная новость">
+                    <img src="{{ most_commented.image.url }}" class="card-img-top" alt="{{most_commented.title}}">
                     <div class="card-body">
                         <span class="badge bg-danger mb-2"><i class="bi bi-star-fill"></i> Главное</span>
-                        <h2 class="card-title">Важное событие произошло сегодня утром</h2>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
-                        <a href="#" class="btn btn-primary">
+                        <h2 class="card-title">{{most_commented.title}}</h2>
+                        <p class="card-text">{% autoescape off %} {{ most_commented.content|truncatewords:20 }}{% endautoescape %}</p>
+                        <a href="/news/{{most_commented.id}}" class="btn btn-primary">
                             <i class="bi bi-book"></i> Читать далее
                         </a>
                     </div>
                     <div class="card-footer text-muted">
-                        <i class="bi bi-clock"></i> Опубликовано 2 часа назад | <i class="bi bi-person"></i> Автор: Иван Иванов
+                        <i class="bi bi-clock"></i> {{ most_commented.pub_date }} | <i class="bi bi-person"></i> Автор: {{ most_commented.author }}
                     </div>
                 </div>
             </div>
@@ -47,24 +47,14 @@
 
                 <div class="card mb-4">
                     <div class="card-header bg-success text-white">
-                        <h5 class="mb-0"><i class="bi bi-fire"></i> Популярное</h5>
+                        <h5 class="mb-0"><i class="bi bi-fire"></i> Популярное за неделю</h5>
                     </div>
                     <div class="list-group list-group-flush">
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <i class="bi bi-1-circle text-primary"></i> Новость 1
+                        {%for news in top_news%}
+                        <a href="/news/{{news.id}}" class="list-group-item list-group-item-action">
+                            <i class="bi bi-1-circle text-primary"></i> {{news.title}}
                         </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <i class="bi bi-2-circle text-primary"></i> Новость 2
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <i class="bi bi-3-circle text-primary"></i> Новость 3
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <i class="bi bi-4-circle text-primary"></i> Новость 4
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <i class="bi bi-5-circle text-primary"></i> Новость 5
-                        </a>
+                          {% endfor %}
                     </div>
                 </div>
             </div>
@@ -73,53 +63,27 @@
         <!-- Последние новости -->
         <h2 class="my-4"><i class="bi bi-list-stars"></i> Последние новости</h2>
         <div class="row">
+            {% for news in news_list %}
             <div class="col-md-4">
                 <div class="card news-card">
-                    <img src="{% static 'images/news_placeholder.jpg' %}" class="card-img-top" alt="Новость">
+                    {% if news.image %}
+                    <img src="{{ news.image.url }}" alt="{{ news.title }}"  alt="{{ news.title }}">
+                     {% endif %}
                     <div class="card-body">
-                        <span class="badge bg-info mb-2"><i class="bi bi-people"></i> Политика</span>
-                        <h5 class="card-title">Важное политическое событие</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-sm btn-outline-primary">
+                        <span class="badge bg-info mb-2"><i class="bi bi-people"></i> {{news.category.name}}</span>
+                        <h5 class="card-title">{{ news.title }}</h5>
+                        <p class="card-text">{% autoescape off %} {{ news.content|truncatewords:20 }}{% endautoescape %}</p>
+                        <a href="/news/{{news.id}}" class="btn btn-sm btn-outline-primary">
                             <i class="bi bi-book"></i> Читать
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card news-card">
-                    <img src="{% static 'images/news_placeholder.jpg' %}" class="card-img-top" alt="Новость">
-                    <div class="card-body">
-                        <span class="badge bg-warning mb-2"><i class="bi bi-graph-up"></i> Экономика</span>
-                        <h5 class="card-title">Изменения на рынке</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-sm btn-outline-primary">
-                            <i class="bi bi-book"></i> Читать
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card news-card">
-                    <img src="{% static 'images/news_placeholder.jpg' %}" class="card-img-top" alt="Новость">
-                    <div class="card-body">
-                        <span class="badge bg-dark mb-2"><i class="bi bi-cpu"></i> Технологии</span>
-                        <h5 class="card-title">Новый гаджет от Apple</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-sm btn-outline-primary">
-                            <i class="bi bi-book"></i> Читать
-                        </a>
-                    </div>
-                </div>
-            </div>
+
+            {% endfor %}
+
         </div>
 
-        <!-- Кнопка "Показать еще" -->
-        <div class="text-center my-4">
-            <button class="btn btn-outline-secondary">
-                <i class="bi bi-arrow-down-circle"></i> Показать больше новостей
-            </button>
-        </div>
     </div>
 
 {% endblock content %}

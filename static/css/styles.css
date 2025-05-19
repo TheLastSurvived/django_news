@@ -179,8 +179,7 @@ footer {
 }
 
 .news-header {
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("https://source.unsplash.com/random/1200x600/?digital,economy");
+  
   background-size: cover;
   background-position: center;
   color: white;
@@ -228,4 +227,8 @@ footer {
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
+}
+.list-group-item.active {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
 }
